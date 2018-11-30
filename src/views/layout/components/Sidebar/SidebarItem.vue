@@ -95,7 +95,7 @@ export default {
     },
     isExternalLink(routePath) {
       return isExternal(routePath)
-    }
+    },
   }
 }
 </script>
