@@ -65,7 +65,7 @@ export const constantRouterMap = [
   {
     path: '',
     component: Layout,
-    redirect: '/bill/task',
+    redirect: '/bill/task'
     // children: [
     //   {
     //     path: 'dashboard',
@@ -74,7 +74,7 @@ export const constantRouterMap = [
     //     meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
     //   }
     // ]
-  },
+  }
   // {
   //   path: '/documentation',
   //   component: Layout,

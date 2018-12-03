@@ -10,40 +10,48 @@
       highlight-current-row
       style="width: 100%;"
       @sort-change="sortChange">
-      <el-table-column :label="$t('flag')" prop="flag" sortable="custom" align="center" width="65">
+      <el-table-column :label="$t('table.id')" prop="id" sortable="custom" align="center" width="65">
         <template slot-scope="scope">
-          <span>{{ scope.row.flag }}</span>
+          <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('date')" width="150px" align="center">
+      <el-table-column :label="$t('table.date')" width="150px" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.date | parseTime('{y}-{m}-{d} {h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('starttime')" min-width="150px">
+      <el-table-column :label="$t('table.title')" min-width="150px">
         <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{ scope.row.starttime }}</span>
-          <el-tag>{{ scope.row.type | typeFilter }}</el-tag>
+          <span>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('endtime')" min-width="150px">
-        <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{ scope.row.endtime }}</span>
-          <el-tag>{{ scope.row.type | typeFilter }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('unit')" width="110px" align="center">
+      <el-table-column :label="$t('table.author')" width="110px" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.author }}</span>
         </template>
       </el-table-column>
-
-      <el-table-column :label="$t('period')" width="80px">
+      <el-table-column v-if="showReviewer" :label="$t('table.reviewer')" width="110px" align="center">
         <template slot-scope="scope">
-          <svg-icon v-for="n in +scope.row.period" :key="n" icon-class="star" class="meta-item__icon"/>
+          <span style="color:red;">{{ scope.row.reviewer }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('actions')" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('table.importance')" width="80px">
+        <template slot-scope="scope">
+          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon"/>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('table.readings')" align="center" width="95">
+        <template slot-scope="scope">
+          <span v-if="scope.row.readings" class="link-type" @click="handleFetchPv(scope.row.pageviews)">{{ scope.row.pageviews }}</span>
+          <span v-else>0</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('table.status')" class-name="status-col" width="100">
+        <template slot-scope="scope">
+          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+        </template>
+      </el-table-column>
+       <el-table-column :label="$t('table.actions')" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{ $t('table.edit') }}</el-button>
         </template>
@@ -98,8 +106,7 @@
 
 <script>
 
-import { fetchList as getList } from '@/api/article'
-import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
+import { fetchList, fetchTask, updateTask } from '@/api/task'
 import waves from '@/directive/waves' // Waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
@@ -117,8 +124,9 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
   return acc
 }, {})
 
+
 export default {
-  name: 'ComplexTable',
+  name: 'Task',
   components: { Pagination },
   directives: { waves },
   filters: {
@@ -134,9 +142,9 @@ export default {
       return calendarTypeKeyValue[type]
     }
   },
-
+  
   data() {
-    return {
+     return {
       tableKey: 0,
       list: null,
       total: 0,
@@ -144,6 +152,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
+        startTime: undefined,
+        entTime: undefined,
         sort: '+id'
       },
       importanceOptions: [1, 2, 3],
