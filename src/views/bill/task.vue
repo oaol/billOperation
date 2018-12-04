@@ -29,20 +29,20 @@
           <span>{{ scope.row.endTime | parseTime('{h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('task.unit')" min-width="150px">
+      <el-table-column :label="$t('task.unit')" min-width="150px" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.unit }}</span>
           <!-- <el-tag :type="scope.row.unit | statusFilter">{{ scope.row.unit }}</el-tag> -->
         </template>
       </el-table-column>
-      <el-table-column :label="$t('task.period')" min-width="150px">
+      <el-table-column :label="$t('task.period')" min-width="150px" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.period }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('table.modify')" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{ $t('table.modify') }}</el-button>
+          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{ $t('modify') }}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -54,13 +54,13 @@
             <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
         </el-form-item>
-        <el-form-item :label="$t('startTime')" prop="timestamp">
-          <el-time-picker v-model="temp.timestamp" placeholder="Please pick a date"/>
+        <el-form-item :label="$t('startTime')" prop="timestamp" >
+          <el-time-picker v-model="temp.timestamp" type ="datetime" placeholder="Please pick a date"/>
         </el-form-item>
         <el-form-item :label="$t('endTime')" prop="timestamp">
-          <el-time-picker v-model="temp.timestamp" placeholder="Please pick a date"/>
+          <el-time-picker v-model="temp.timestamp" type ="datetime" placeholder="Please pick a date"/>
         </el-form-item>
-        <el-form-item :label="$t('period')" prop="period">
+        <el-form-item :label="$t('period')" prop="period" >
           <el-input v-model="temp.period" type= "number"/>
         </el-form-item>
       </el-form>

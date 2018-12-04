@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-date-picker v-model="listQuery.startTime" type="datetime" style="width: 200px;" class="filter-item" placeholder="Please pick a start date"/>
-      <el-date-picker v-model="listQuery.endTime" type="datetime" style="width: 200px;" class="filter-item" placeholder="Please pick a end date"/>
+      <el-date-picker v-model="listQuery.startTime" type="datetime" style="width: 220px;" class="filter-item" placeholder="Please pick a start date"/>
+      <el-date-picker v-model="listQuery.endTime" type="datetime" style="width: 220px;" class="filter-item" placeholder="Please pick a end date"/>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ $t('table.search') }}</el-button>
     </div>
 
