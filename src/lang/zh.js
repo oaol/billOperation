@@ -116,6 +116,14 @@ export default {
     useTime: '使用时间',
     flag: '标志'
   },
+  task: {
+    flag: '有效标识',
+    sqlDate: 'sql date',
+    startTime: '任务开始时间',
+    endTime: '任务结束时间',
+    unit: '时间粒度',
+    period: '周期'
+  },
   table: {
     dynamicTips1: '固定表头, 按照表头顺序排序',
     dynamicTips2: '不固定表头, 按照点击顺序排序',

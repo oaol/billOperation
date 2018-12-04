@@ -8,14 +8,6 @@ export function fetchList(query) {
   })
 }
 
-export function fetchTask(id) {
-  return request({
-    url: '/task/detail',
-    method: 'get',
-    params: { id }
-  })
-}
-
 export function updateTask(data) {
   return request({
     url: '/task/update',
