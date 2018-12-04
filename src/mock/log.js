@@ -8,13 +8,13 @@ for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: '@increment',
     sqlDate: +Mock.Random.date('T'),
-    hTitle: '@title(2, 3)',
-    mTime: +Mock.Random.date('T'),
-    execStart: +Mock.Random.date('T'),
-    execEnd: +Mock.Random.date('T'),
-    useTime: +Mock.Random.date('T'),
+    hTitle: '@integer(1, 24)',
+    mTime: '@integer(1, 60)',
+    execStart: '@datetime',
+    execEnd: '@datetime',
+    useTime: 'datetime',
     flag: '@integer(1, 3)',
-    period: '@first @last',
+    period: '10',
     platforms: ['a-platform']
   }))
 }
