@@ -9,7 +9,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      "/up": {
+        "target": "http://localhost:8089",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+          '^/up': '/up'
+        }
+      }
+    },
 
     // Various Dev Server settings
 

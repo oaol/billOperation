@@ -122,7 +122,8 @@ export default {
     startTime: '任务开始时间',
     endTime: '任务结束时间',
     unit: '时间粒度',
-    period: '周期'
+    period: '周期',
+    actions: '操作'
   },
   table: {
     dynamicTips1: '固定表头, 按照表头顺序排序',

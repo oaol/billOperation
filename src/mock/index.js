@@ -40,7 +40,7 @@ Mock.mock(/\/transaction\/list/, 'get', transactionAPI.getList)
 
 // bill
 Mock.mock(/\/log\/list/, 'get', logAPI.getList)
-Mock.mock(/\/task\/list/, 'get', taskAPI.getList)
+// Mock.mock(/\/task\/list/, 'get', taskAPI.getList)
 Mock.mock(/\/task\/upadte/, 'post', taskAPI.updateTask)
 
 export default Mock
