@@ -15,9 +15,9 @@
       highlight-current-row
       style="width: 100%;"
       @sort-change="sortChange">
-      <el-table-column :label="$t('log.id')" prop="id" sortable="custom" align="center" width="65">
+      <el-table-column :label="$t('log.logId')" prop="id"  align="center" width="80">
         <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
+          <span>{{ scope.row.logId }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('log.sqlDate')" width="150px" align="center">
@@ -25,9 +25,9 @@
           <span>{{ scope.row.sqlDate | parseTime('{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('log.hTime')" min-width="150px">
+      <el-table-column :label="$t('log.hTime')" min-width="100px" align="center" >
         <template slot-scope="scope">
-          <span>{{ scope.row.hTitle }}</span>
+          <span>{{ scope.row.hTime }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('log.period')" width="110px" align="center">
@@ -55,7 +55,7 @@
           <span>{{ scope.row.useTime | parseTime('{h}:{i}:{s}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('log.flag')" min-width="150px">
+      <el-table-column :label="$t('log.flag')" min-width="150px" align="center" width="80">
         <template slot-scope="scope">
           <span>{{ scope.row.flag }}</span>
         </template>
@@ -145,7 +145,6 @@ export default {
 
        // console.log(data.items)
         this.total =  response.data.results.totalElements
-        console.log(data.total)
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
