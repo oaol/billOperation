@@ -25,7 +25,7 @@
           <span>{{ scope.row.sqlDate | parseTime('{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('log.hTitle')" min-width="150px">
+      <el-table-column :label="$t('log.hTime')" min-width="150px">
         <template slot-scope="scope">
           <span>{{ scope.row.hTitle }}</span>
         </template>
@@ -140,9 +140,12 @@ export default {
     getList() {
       this.listLoading = true
       fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
+        console.log(JSON.stringify(response))
+        this.list = response.data.results.content
 
+       // console.log(data.items)
+        this.total =  response.data.results.totalElements
+        console.log(data.total)
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false

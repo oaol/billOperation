@@ -53,8 +53,11 @@
             <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
         </el-form-item>
-        <el-form-item :label="$t('sqlDate')" prop="sqlDate" >
-          <el-date-picker v-model="temp.sqlDate" type ="date" placeholder="Please pick a date"/>
+        <el-form-item :label="$t('startTime')" prop="startTime" >
+          <el-time-picker v-model="temp.startTime" type ="date" placeholder="Please pick a date"/>
+        </el-form-item>
+        <el-form-item :label="$t('endTime')" prop="endTime" >
+          <el-time-picker v-model="temp.endTime" type ="date" placeholder="Please pick a date"/>
         </el-form-item>
         <el-form-item :label="$t('period')" prop="period" >
           <el-input v-model="temp.period" type= "number"/>
@@ -207,17 +210,7 @@ export default {
         }
       })
     },
-    handleDelete(row) {
-      this.$notify({
-        title: '成功',
-        message: '删除成功',
-        type: 'success',
-        duration: 2000
-      })
-      const index = this.list.indexOf(row)
-      this.list.splice(index, 1)
-    },
-
+  
     formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => {
         if (j === 'timestamp') {
