@@ -54,10 +54,10 @@
           </el-select>
         </el-form-item>
         <el-form-item :label="$t('startTime')" prop="startTime" >
-          <el-time-picker v-model="temp.startTime" type ="date" placeholder="Please pick a date"/>
+          <el-time-picker v-model="temp.startTime" type ="date" value-format="HH:mm:ss" format="HH:mm:ss" placeholder="Please pick a date"/>
         </el-form-item>
         <el-form-item :label="$t('endTime')" prop="endTime" >
-          <el-time-picker v-model="temp.endTime" type ="date" placeholder="Please pick a date"/>
+          <el-time-picker v-model="temp.endTime" type ="date" value-format="HH:mm:ss" format="HH:mm:ss" placeholder="Please pick a date"/>
         </el-form-item>
         <el-form-item :label="$t('period')" prop="period" >
           <el-input v-model="temp.period" type= "number"/>
