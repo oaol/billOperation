@@ -99,7 +99,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 20,
+        pageSize: 20,
         startTime: undefined,
         entTime: undefined,
         sort: '+id'
@@ -145,6 +145,10 @@ export default {
 
        // console.log(data.items)
         this.total =  response.data.results.totalElements
+        this.$message({
+            message: response.data.results.totalElements,
+            type: 'success'
+        })
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
