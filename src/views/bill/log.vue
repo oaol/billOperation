@@ -145,10 +145,6 @@ export default {
 
        // console.log(data.items)
         this.total =  response.data.results.totalElements
-        this.$message({
-            message: response.data.results.totalElements,
-            type: 'success'
-        })
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
