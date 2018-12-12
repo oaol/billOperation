@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-         <el-date-picker v-model="listQuery.execStart" type="datetimerange" class="filter-item" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm:ss"> </el-date-picker>
-      <!-- <el-date-picker v-model="listQuery.execStart" type="datetime" style="width: 220px;" class="filter-item" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm:ss" placeholder="Please pick a start date"/>
-      <el-date-picker v-model="listQuery.execEnd" type="datetime" style="width: 220px;" class="filter-item" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm:ss" placeholder="Please pick a end date"/> -->
+         <!-- <el-date-picker v-model="listQuery.execStart" type="datetimerange" class="filter-item" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm:ss"> </el-date-picker>-->
+      <el-date-picker v-model="listQuery.execStart" type="datetime" style="width: 220px;" class="filter-item" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm:ss" placeholder="Please pick a start date"/>
+      <el-date-picker v-model="listQuery.execEnd" type="datetime" style="width: 220px;" class="filter-item" value-format="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm:ss" placeholder="Please pick a end date"/> 
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ $t('table.search') }}</el-button>
     </div>
 
@@ -63,7 +63,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.pageSize" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.pageSize" @pagination="getList" align="center" />
   </div>
 </template>
 
